@@ -7,13 +7,19 @@ import streamlit as st
 import matplotlib.pyplot as plt
 from sklearn.metrics import ConfusionMatrixDisplay
 
+
 st.set_page_config(
     page_title="KIVA Microfinance Repayment Dashboard",
     page_icon="📊",
     layout="wide"
 )
 
-ARTIFACT_DIR = Path("/Users/swamminhtun/Downloads/KoYZPML/kiva_dashboard_artifacts")
+# Get the folder containing app.py
+BASE_DIR = Path(__file__).parent
+
+# Artifact folder
+ARTIFACT_DIR = BASE_DIR / "kiva_dashboard_artifacts"
+
 
 REQUIRED_FILES = {
     "models": ARTIFACT_DIR / "optimized_models.joblib",
