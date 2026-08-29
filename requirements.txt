@@ -6,4 +6,4 @@ xgboost
 catboost
 streamlit
 matplotlib
-joblibgit ad
+joblib
