@@ -1,5 +1,5 @@
-xgboost
-catboost
+xgboost==3.3.0
+catboost==1.2.10
 streamlit
 pandas==2.3.0
 numpy==2.3.1
