@@ -1055,10 +1055,15 @@ with tab_predict:
 
     user_values = {}
 
-    # Regular widgets are used instead of st.form so changing Country reruns
-    # the page immediately and refreshes the Town options.
+
     with st.container(border=True):
         st.markdown("#### Loan and borrower inputs")
+
+        st.caption(
+            "Loan Amount = what the borrower requested. "
+            "Funded Amount = how much lenders raised. "
+            "Disbursal Amount = what was actually paid out, in local currency."
+        )
 
         columns = st.columns(2)
         handled_features = set()
@@ -1068,9 +1073,6 @@ with tab_predict:
             if feature in handled_features:
                 continue
 
-            # Country, town and country code are one linked input group. The
-            # country code is supplied to the model but is never shown as a
-            # separate field that could contradict the selected country.
             if feature in LOCATION_FEATURES:
                 country_options = schema["categorical_options"].get(
                     "location.country",
@@ -1411,6 +1413,11 @@ with tab_importance:
     ax.set_xlabel("Mean decrease in test F1 after permutation")
     ax.set_title(f"Permutation importance — {importance_model}")
     st.pyplot(fig)
+    st.caption(
+        "Feature importance shows which loan details influence the "
+        "prediction most. A longer bar means that feature has a bigger "
+        "effect on whether the loan is predicted to be repaid or not."
+    )
 
     st.dataframe(
         friendly_feature_table(table.head(top_n)),
